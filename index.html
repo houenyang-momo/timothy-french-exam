@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timothy - Examen de grammaire française</title>
+  <style>
+    :root {
+      --bg: #fff7e8;
+      --bg-soft: #fffdf7;
+      --ink: #243044;
+      --muted: #67728a;
+      --orange: #f28a3a;
+      --orange-dark: #d96f22;
+      --yellow: #ffd66b;
+      --blue: #4d8fcb;
+      --blue-dark: #276fa7;
+      --green: #47a66b;
+      --red: #d95b4f;
+      --card: #ffffff;
+      --border: #eadfcf;
+      --shadow: 0 18px 45px rgba(117, 76, 29, 0.14);
+      --radius: 24px;
+      --focus: 0 0 0 4px rgba(77, 143, 203, 0.28);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 12%, rgba(255, 214, 107, 0.44), transparent 28rem),
+        radial-gradient(circle at 90% 8%, rgba(77, 143, 203, 0.18), transparent 24rem),
+        linear-gradient(135deg, #fff7e8 0%, #f7fbff 100%);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
+    .app-shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 22px 0 32px;
+    }
+
+    .top-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 24px;
+      border: 1px solid rgba(234, 223, 207, 0.78);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 246, 223, 0.94));
+      box-shadow: var(--shadow);
+    }
+
+    .top-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -120px -170px auto;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      background: rgba(242, 138, 58, 0.1);
+      pointer-events: none;
+    }
+
+    .title-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .sun {
+      position: relative;
+      flex: 0 0 auto;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 32%, #fff2a8 0 19%, var(--yellow) 20% 58%, #f6aa3b 59% 100%);
+      box-shadow: 0 8px 18px rgba(242, 138, 58, 0.22);
+    }
+
+    .sun::before {
+      content: "";
+      position: absolute;
+      inset: -12px;
+      z-index: -1;
+      background:
+        conic-gradient(from 6deg, rgba(242, 138, 58, 0) 0 8deg, rgba(242, 138, 58, 0.42) 9deg 17deg, rgba(242, 138, 58, 0) 18deg 31deg);
+      border-radius: 50%;
+      animation: sunshine 10s linear infinite;
+    }
+
+    .sun-face {
+      position: absolute;
+      left: 17px;
+      top: 30px;
+      width: 42px;
+      height: 20px;
+    }
+
+    .sun-face::before,
+    .sun-face::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #7b4d23;
+    }
+
+    .sun-face::before {
+      left: 4px;
+    }
+
+    .sun-face::after {
+      right: 4px;
+    }
+
+    .smile {
+      position: absolute;
+      left: 12px;
+      top: 7px;
+      width: 18px;
+      height: 11px;
+      border-bottom: 3px solid #7b4d23;
+      border-radius: 0 0 18px 18px;
+    }
+
+    @keyframes sunshine {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.55rem, 3vw, 2.35rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .ghost-button,
+    .primary-button,
+    .secondary-button {
+      min-height: 48px;
+      border: 0;
+      border-radius: 16px;
+      padding: 12px 18px;
+      font-weight: 800;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .primary-button {
+      color: #fff;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      box-shadow: 0 12px 22px rgba(217, 111, 34, 0.22);
+    }
+
+    .secondary-button {
+      color: var(--blue-dark);
+      background: #e8f4ff;
+      box-shadow: 0 8px 18px rgba(39, 111, 167, 0.1);
+    }
+
+    .ghost-button {
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--border);
+    }
+
+    .primary-button:hover,
+    .secondary-button:hover,
+    .ghost-button:hover,
+    .option-button:hover,
+    .token-button:hover,
+    .section-tab:hover {
+      transform: translateY(-1px);
+    }
+
+    .progress-area {
+      margin-top: 18px;
+    }
+
+    .progress-labels {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #f1e5d3;
+      box-shadow: inset 0 2px 6px rgba(72, 46, 20, 0.1);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--yellow), var(--orange), var(--blue));
+      transition: width 220ms ease;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .section-nav,
+    .practice-panel,
+    .results-panel {
+      border: 1px solid rgba(234, 223, 207, 0.82);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .section-nav {
+      position: sticky;
+      top: 16px;
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .section-tab {
+      position: relative;
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+      min-height: 66px;
+      border: 1px solid #efe4d3;
+      border-radius: 18px;
+      padding: 12px;
+      text-align: left;
+      color: var(--ink);
+      background: #fffaf1;
+      transition: transform 160ms ease, border 160ms ease, background 160ms ease;
+    }
+
+    .section-tab[aria-selected="true"] {
+      border-color: var(--section-color);
+      background: linear-gradient(135deg, #fff, color-mix(in srgb, var(--section-color) 14%, white));
+    }
+
+    .section-tab.completed .tab-score {
+      color: var(--green);
+    }
+
+    .section-stripe {
+      width: 100%;
+      height: 42px;
+      border-radius: 999px;
+      background: var(--section-color);
+    }
+
+    .tab-title {
+      display: block;
+      font-weight: 850;
+      line-height: 1.12;
+    }
+
+    .tab-meta {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 750;
+    }
+
+    .tab-score {
+      min-width: 46px;
+      text-align: right;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 0.92rem;
+    }
+
+    .practice-panel,
+    .results-panel {
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 20px 22px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--section-color) 94%, black), color-mix(in srgb, var(--section-color) 74%, white));
+    }
+
+    .section-kicker {
+      font-weight: 900;
+      opacity: 0.88;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.82rem;
+    }
+
+    .section-header h2 {
+      margin-top: 4px;
+      font-size: clamp(1.38rem, 2.5vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .section-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: #183147;
+      background: rgba(255, 255, 255, 0.84);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .question-card {
+      padding: 24px;
+    }
+
+    .question-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    .format-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: color-mix(in srgb, var(--section-color) 72%, black);
+      background: color-mix(in srgb, var(--section-color) 15%, white);
+      font-size: 0.9rem;
+    }
+
+    .question-title {
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .instruction {
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .answer-area {
+      margin-top: 22px;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .option-button,
+    .token-button {
+      min-height: 54px;
+      border: 2px solid #efe3d2;
+      border-radius: 18px;
+      color: var(--ink);
+      background: #fffaf1;
+      font-weight: 800;
+      text-align: left;
+      transition: transform 160ms ease, border 160ms ease, background 160ms ease, box-shadow 160ms ease;
+    }
+
+    .option-button {
+      padding: 14px 16px;
+    }
+
+    .option-button.selected,
+    .token-button.selected {
+      border-color: var(--section-color);
+      background: color-mix(in srgb, var(--section-color) 13%, white);
+    }
+
+    .option-button.correct-option,
+    .token-button.correct-token {
+      border-color: var(--green);
+      background: #eaf7ef;
+    }
+
+    .option-button.wrong-option,
+    .token-button.wrong-token {
+      border-color: var(--red);
+      background: #fff0ee;
+    }
+
+    .token-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 20px;
+      background: #fffaf1;
+      border: 1px solid #efe3d2;
+    }
+
+    .token-button {
+      min-height: 48px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 58px;
+      border: 2px solid #eadfcf;
+      border-radius: 18px;
+      padding: 12px 16px;
+      color: var(--ink);
+      background: #fffaf1;
+      font-weight: 800;
+    }
+
+    .feedback {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 2px solid;
+      font-weight: 750;
+    }
+
+    .feedback.correct {
+      border-color: rgba(71, 166, 107, 0.42);
+      background: #edf9f1;
+    }
+
+    .feedback.wrong {
+      border-color: rgba(217, 91, 79, 0.42);
+      background: #fff1ef;
+    }
+
+    .feedback-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      color: #fff;
+      font-weight: 950;
+    }
+
+    .feedback.correct .feedback-mark {
+      background: var(--green);
+    }
+
+    .feedback.wrong .feedback-mark {
+      background: var(--red);
+    }
+
+    .feedback-title {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.03rem;
+    }
+
+    .feedback-detail {
+      color: var(--muted);
+    }
+
+    .panel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 24px 24px;
+    }
+
+    .control-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .mini-stats {
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    .results-panel {
+      padding: 24px;
+    }
+
+    .results-hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .results-hero h2 {
+      font-size: clamp(1.55rem, 3vw, 2.25rem);
+      line-height: 1.12;
+    }
+
+    .results-hero p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .score-bubble {
+      display: grid;
+      place-items: center;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(135deg, var(--orange), var(--blue));
+      box-shadow: 0 16px 28px rgba(77, 143, 203, 0.22);
+      text-align: center;
+      font-weight: 950;
+    }
+
+    .score-bubble strong {
+      display: block;
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .result-card {
+      border: 1px solid #efe3d2;
+      border-radius: 20px;
+      padding: 16px;
+      background: #fffaf1;
+    }
+
+    .result-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .result-title {
+      font-weight: 900;
+      line-height: 1.18;
+    }
+
+    .result-score {
+      color: var(--section-color);
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .tiny-bar {
+      overflow: hidden;
+      height: 10px;
+      border-radius: 999px;
+      background: #f0e3d2;
+    }
+
+    .tiny-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--section-color);
+    }
+
+    .result-actions {
+      margin-top: 12px;
+    }
+
+    .review-button {
+      min-height: 42px;
+      border: 0;
+      border-radius: 14px;
+      padding: 9px 13px;
+      color: #1d3446;
+      background: color-mix(in srgb, var(--section-color) 18%, white);
+      font-weight: 850;
+    }
+
+    .empty-note {
+      padding: 18px;
+      border-radius: 18px;
+      color: var(--muted);
+      background: #fffaf1;
+      font-weight: 750;
+    }
+
+    @media (max-width: 920px) {
+      .app-shell {
+        width: min(100% - 24px, 820px);
+        padding-top: 12px;
+      }
+
+      .top-card,
+      .workspace,
+      .results-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      .section-nav {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-tab {
+        min-height: 72px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      body {
+        font-size: 16px;
+      }
+
+      .top-card,
+      .question-card,
+      .results-panel {
+        padding: 18px;
+      }
+
+      .title-row {
+        align-items: flex-start;
+      }
+
+      .sun {
+        width: 58px;
+        height: 58px;
+      }
+
+      .sun-face {
+        left: 12px;
+        top: 23px;
+        transform: scale(0.76);
+        transform-origin: center;
+      }
+
+      .section-nav,
+      .option-grid,
+      .results-grid,
+      .input-row {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header,
+      .question-top,
+      .panel-controls {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-pill {
+        justify-self: start;
+      }
+
+      .input-row .primary-button {
+        width: 100%;
+      }
+
+      .score-bubble {
+        width: 112px;
+        height: 112px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-card">
+      <div>
+        <div class="title-row">
+          <div class="sun" aria-hidden="true">
+            <div class="sun-face"><span class="smile"></span></div>
+          </div>
+          <div>
+            <h1>Examen de grammaire française</h1>
+            <p class="subtitle" id="current-section-label">L'adjectif</p>
+          </div>
+        </div>
+        <div class="progress-area" aria-label="Progression totale">
+          <div class="progress-labels">
+            <span id="progress-count">0/30 questions</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="overall-progress"></div>
+          </div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="secondary-button" type="button" data-action="show-results">Résultats</button>
+        <button class="ghost-button" type="button" data-action="reset">Recommencer</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <nav class="section-nav" id="section-nav" aria-label="Sections"></nav>
+      <section id="main-panel" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <script type="application/json" id="exam-data">
+[
+  {
+    "id": "adjectif",
+    "title": "L'adjectif",
+    "shortTitle": "Adjectif",
+    "color": "#f28a3a",
+    "questions": [
+      {
+        "id": "adj-definition",
+        "type": "choice",
+        "prompt": "Qu'est-ce qu'un adjectif qualificatif ?",
+        "instruction": "Choisis la bonne définition.",
+        "options": [
+          { "value": "nom", "label": "Un mot qui nomme une personne, un animal ou une chose." },
+          { "value": "adjectif", "label": "Un mot qui précise comment est un nom ou un pronom." },
+          { "value": "verbe", "label": "Un mot qui indique une action ou un état." },
+          { "value": "determinant", "label": "Un mot placé devant le nom pour l'introduire." }
+        ],
+        "answer": "adjectif",
+        "correctLabel": "Un mot qui précise comment est un nom ou un pronom.",
+        "explanation": "L'adjectif qualificatif donne une qualité ou une précision : grand, joyeux, bleu."
+      },
+      {
+        "id": "adj-reperage",
+        "type": "selectWords",
+        "prompt": "Dans la phrase, tape sur les adjectifs.",
+        "instruction": "Il y en a deux.",
+        "tokens": ["La", "petite", "chatte", "noire", "dort", "sur", "le", "tapis."],
+        "answer": [1, 3],
+        "correctLabel": "petite, noire",
+        "explanation": "Petite et noire précisent comment est la chatte."
+      },
+      {
+        "id": "adj-accord",
+        "type": "fill",
+        "prompt": "Accorde l'adjectif : Les fleurs sont ___.",
+        "instruction": "Adjectif à accorder : beau.",
+        "accepted": ["belles"],
+        "correctLabel": "belles",
+        "explanation": "Fleurs est féminin pluriel, donc beau devient belles."
+      },
+      {
+        "id": "adj-place",
+        "type": "choice",
+        "prompt": "Où peut se placer un adjectif qualificatif ?",
+        "instruction": "Choisis la règle la plus complète.",
+        "options": [
+          { "value": "avant", "label": "Seulement avant le nom." },
+          { "value": "apres", "label": "Seulement après le nom." },
+          { "value": "autour", "label": "Avant ou après le nom, et parfois séparé par un verbe comme être." },
+          { "value": "jamais", "label": "Jamais près du nom." }
+        ],
+        "answer": "autour",
+        "correctLabel": "Avant ou après le nom, et parfois séparé par un verbe comme être.",
+        "explanation": "On peut dire un petit vélo, un vélo rouge, ou ce vélo est solide."
+      },
+      {
+        "id": "adj-sens",
+        "type": "choice",
+        "prompt": "Quel est le bon sens de ces expressions ?",
+        "instruction": "Observe la place de l'adjectif pauvre.",
+        "options": [
+          { "value": "pitie-argent", "label": "Un pauvre garçon fait pitié ; un garçon pauvre manque d'argent." },
+          { "value": "argent-pitie", "label": "Un pauvre garçon manque d'argent ; un garçon pauvre fait pitié." },
+          { "value": "meme", "label": "Les deux expressions ont exactement le même sens." },
+          { "value": "aucun", "label": "L'adjectif pauvre ne change jamais le sens." }
+        ],
+        "answer": "pitie-argent",
+        "correctLabel": "Un pauvre garçon fait pitié ; un garçon pauvre manque d'argent.",
+        "explanation": "Certains adjectifs changent de sens selon leur place."
+      },
+      {
+        "id": "adj-pronom",
+        "type": "truefalse",
+        "prompt": "Un adjectif qualificatif peut aussi préciser un pronom.",
+        "instruction": "Vrai ou faux ?",
+        "answer": true,
+        "correctLabel": "Vrai",
+        "explanation": "Dans « nous sommes prêts », prêts précise le pronom nous."
+      }
+    ]
+  },
+  {
+    "id": "cc",
+    "title": "Les compléments circonstanciels",
+    "shortTitle": "CC",
+    "color": "#4d8fcb",
+    "questions": [
+      {
+        "id": "cc-definition",
+        "type": "choice",
+        "prompt": "Qu'est-ce qu'un complément circonstanciel ?",
+        "instruction": "Repère la définition apprise en classe.",
+        "options": [
+          { "value": "nom", "label": "Un groupe qui complète toujours un nom." },
+          { "value": "verbe-indispensable", "label": "Un complément du verbe qu'on ne peut jamais déplacer." },
+          { "value": "circonstance", "label": "Un groupe qui indique une circonstance et peut souvent être déplacé ou supprimé." },
+          { "value": "sujet", "label": "Le groupe qui fait l'action dans la phrase." }
+        ],
+        "answer": "circonstance",
+        "correctLabel": "Un groupe qui indique une circonstance et peut souvent être déplacé ou supprimé.",
+        "explanation": "Les CC indiquent par exemple le lieu, le temps, la manière ou la cause."
+      },
+      {
+        "id": "cc-reperage",
+        "type": "selectWords",
+        "prompt": "Tape sur le complément circonstanciel de temps.",
+        "instruction": "Phrase : Hier, nous avons joué dans la cour.",
+        "tokens": ["Hier,", "nous", "avons", "joué", "dans", "la", "cour."],
+        "answer": [0],
+        "correctLabel": "Hier",
+        "explanation": "Hier répond à la question « quand ? » : c'est un CC de temps."
+      },
+      {
+        "id": "cc-type",
+        "type": "choice",
+        "prompt": "Dans « Les élèves lisent calmement », quel est le type de CC ?",
+        "instruction": "Le mot à observer est : calmement.",
+        "options": [
+          { "value": "lieu", "label": "CC de lieu" },
+          { "value": "temps", "label": "CC de temps" },
+          { "value": "maniere", "label": "CC de manière" },
+          { "value": "cause", "label": "CC de cause" }
+        ],
+        "answer": "maniere",
+        "correctLabel": "CC de manière",
+        "explanation": "Calmement répond à la question « comment ? »."
+      },
+      {
+        "id": "cc-question-lieu",
+        "type": "choice",
+        "prompt": "Quel mot-question aide à trouver un CC de lieu ?",
+        "instruction": "Choisis le bon indice.",
+        "options": [
+          { "value": "ou", "label": "Où ?" },
+          { "value": "quand", "label": "Quand ?" },
+          { "value": "comment", "label": "Comment ?" },
+          { "value": "pourquoi", "label": "Pourquoi ?" }
+        ],
+        "answer": "ou",
+        "correctLabel": "Où ?",
+        "explanation": "Le CC de lieu répond à « où ? » : dans la cour, à Paris, sous la table."
+      },
+      {
+        "id": "cc-ajout-cause",
+        "type": "fill",
+        "prompt": "Complète avec un CC de cause : Il est resté à la maison ___.",
+        "instruction": "Écris le groupe : à cause de la pluie.",
+        "accepted": ["à cause de la pluie", "a cause de la pluie"],
+        "correctLabel": "à cause de la pluie",
+        "explanation": "À cause de la pluie explique pourquoi il est resté à la maison."
+      },
+      {
+        "id": "cc-deplacable",
+        "type": "truefalse",
+        "prompt": "Un complément circonstanciel peut souvent être déplacé ou supprimé.",
+        "instruction": "Vrai ou faux ?",
+        "answer": true,
+        "correctLabel": "Vrai",
+        "explanation": "Exemple : « Demain, je révise » devient « Je révise demain »."
+      }
+    ]
+  },
+  {
+    "id": "cdn",
+    "title": "Le complément du nom",
+    "shortTitle": "CdN",
+    "color": "#47a66b",
+    "questions": [
+      {
+        "id": "cdn-definition",
+        "type": "choice",
+        "prompt": "À quoi sert le complément du nom ?",
+        "instruction": "Choisis la définition correcte.",
+        "options": [
+          { "value": "detail-nom", "label": "Il donne une précision sur un nom et commence souvent par une préposition." },
+          { "value": "action", "label": "Il indique l'action faite par le sujet." },
+          { "value": "temps", "label": "Il indique seulement le moment de l'action." },
+          { "value": "accord", "label": "Il accorde toujours le verbe avec le sujet." }
+        ],
+        "answer": "detail-nom",
+        "correctLabel": "Il donne une précision sur un nom et commence souvent par une préposition.",
+        "explanation": "Dans « une boîte à outils », à outils complète le nom boîte."
+      },
+      {
+        "id": "cdn-reperage",
+        "type": "selectWords",
+        "prompt": "Dans la phrase, tape sur le complément du nom.",
+        "instruction": "Phrase : J'ai mangé un gâteau au chocolat.",
+        "tokens": ["J'ai", "mangé", "un", "gâteau", "au", "chocolat."],
+        "answer": [4, 5],
+        "correctLabel": "au chocolat",
+        "explanation": "Au chocolat précise le nom gâteau."
+      },
+      {
+        "id": "cdn-prepositions",
+        "type": "choice",
+        "prompt": "Quelles prépositions peuvent introduire un complément du nom ?",
+        "instruction": "Choisis la liste la plus juste.",
+        "options": [
+          { "value": "prep-complete", "label": "à, de, par, pour, sans, avec, en" },
+          { "value": "verbes", "label": "être, avoir, aller, faire" },
+          { "value": "determinants", "label": "le, la, les, un, une" },
+          { "value": "pronoms", "label": "je, tu, il, elle, nous" }
+        ],
+        "answer": "prep-complete",
+        "correctLabel": "à, de, par, pour, sans, avec, en",
+        "explanation": "Le CdN est souvent construit avec une préposition."
+      },
+      {
+        "id": "cdn-contractes",
+        "type": "choice",
+        "prompt": "Quel groupe contient seulement des articles contractés ?",
+        "instruction": "Souviens-toi : à + le, à + les, de + le, de + les.",
+        "options": [
+          { "value": "contractes", "label": "au, aux, du, des" },
+          { "value": "simples", "label": "le, la, les, un" },
+          { "value": "adjectifs", "label": "beau, belle, grands, petites" },
+          { "value": "verbes", "label": "serai, aurai, pourrai, viendrai" }
+        ],
+        "answer": "contractes",
+        "correctLabel": "au, aux, du, des",
+        "explanation": "Ce sont des formes contractées avec à ou de."
+      },
+      {
+        "id": "cdn-composition",
+        "type": "choice",
+        "prompt": "Dans « une envie de jouer », le complément du nom est composé de quoi ?",
+        "instruction": "Observe le groupe de jouer.",
+        "options": [
+          { "value": "prep-nom", "label": "Préposition + nom" },
+          { "value": "prep-pronom", "label": "Préposition + pronom" },
+          { "value": "prep-infinitif", "label": "Préposition + verbe à l'infinitif" },
+          { "value": "prep-adverbe", "label": "Préposition + adverbe" }
+        ],
+        "answer": "prep-infinitif",
+        "correctLabel": "Préposition + verbe à l'infinitif",
+        "explanation": "De est la préposition et jouer est un verbe à l'infinitif."
+      },
+      {
+        "id": "cdn-supprimer",
+        "type": "truefalse",
+        "prompt": "On peut généralement supprimer un complément du nom sans casser la phrase.",
+        "instruction": "Vrai ou faux ?",
+        "answer": true,
+        "correctLabel": "Vrai",
+        "explanation": "« Un gâteau au chocolat » peut devenir « un gâteau » ; la phrase reste correcte."
+      }
+    ]
+  },
+  {
+    "id": "cod-coi",
+    "title": "COD / COI - Le complément du verbe",
+    "shortTitle": "COD / COI",
+    "color": "#8b7bd8",
+    "questions": [
+      {
+        "id": "cv-definition",
+        "type": "choice",
+        "prompt": "Qu'est-ce qu'un complément du verbe ?",
+        "instruction": "Choisis la définition utile pour reconnaître COD et COI.",
+        "options": [
+          { "value": "circonstance", "label": "Un groupe qu'on peut toujours déplacer au début de la phrase." },
+          { "value": "verbe", "label": "Un complément qui complète le verbe et qui est souvent indispensable." },
+          { "value": "nom", "label": "Un groupe qui complète seulement un nom." },
+          { "value": "sujet", "label": "Le groupe qui commande l'accord du verbe." }
+        ],
+        "answer": "verbe",
+        "correctLabel": "Un complément qui complète le verbe et qui est souvent indispensable.",
+        "explanation": "Le complément du verbe est lié au verbe ; on ne le déplace pas comme un CC."
+      },
+      {
+        "id": "cod-pomme",
+        "type": "choice",
+        "prompt": "Dans « Luc mange une pomme », « une pomme » est...",
+        "instruction": "Pose la question : Luc mange quoi ?",
+        "options": [
+          { "value": "cod", "label": "Un COD" },
+          { "value": "coi", "label": "Un COI" },
+          { "value": "cc", "label": "Un complément circonstanciel" },
+          { "value": "cdn", "label": "Un complément du nom" }
+        ],
+        "answer": "cod",
+        "correctLabel": "Un COD",
+        "explanation": "Une pomme répond à quoi ? et il n'y a pas de préposition."
+      },
+      {
+        "id": "coi-soeur",
+        "type": "choice",
+        "prompt": "Dans « Sarah parle à sa sœur », « à sa sœur » est...",
+        "instruction": "Observe la préposition à.",
+        "options": [
+          { "value": "cod", "label": "Un COD" },
+          { "value": "coi", "label": "Un COI" },
+          { "value": "sujet", "label": "Le sujet" },
+          { "value": "attribut", "label": "Un attribut du sujet" }
+        ],
+        "answer": "coi",
+        "correctLabel": "Un COI",
+        "explanation": "À sa sœur répond à qui ? avec une préposition."
+      },
+      {
+        "id": "cod-reperage",
+        "type": "selectWords",
+        "prompt": "Tape sur le COD dans la phrase.",
+        "instruction": "Phrase : Le maître félicite les élèves.",
+        "tokens": ["Le", "maître", "félicite", "les", "élèves."],
+        "answer": [3, 4],
+        "correctLabel": "les élèves",
+        "explanation": "Le maître félicite qui ? Les élèves."
+      },
+      {
+        "id": "cod-coi-questions",
+        "type": "choice",
+        "prompt": "Quelles questions permettent de reconnaître COD et COI ?",
+        "instruction": "Choisis la paire correcte.",
+        "options": [
+          { "value": "cod-coi", "label": "COD : qui ? quoi ? ; COI : à qui ? à quoi ? de qui ? de quoi ?" },
+          { "value": "cc", "label": "COD : où ? quand ? ; COI : comment ? pourquoi ?" },
+          { "value": "cdn", "label": "COD : quel nom ? ; COI : quelle préposition ?" },
+          { "value": "accord", "label": "COD : combien ? ; COI : quel âge ?" }
+        ],
+        "answer": "cod-coi",
+        "correctLabel": "COD : qui ? quoi ? ; COI : à qui ? à quoi ? de qui ? de quoi ?",
+        "explanation": "Le COD est direct ; le COI est introduit par une préposition."
+      },
+      {
+        "id": "cod-pronom",
+        "type": "fill",
+        "prompt": "Remplace le COD par un pronom : Je regarde le film. → Je ___ regarde.",
+        "instruction": "Écris le pronom COD.",
+        "accepted": ["le"],
+        "correctLabel": "le",
+        "explanation": "Le film est masculin singulier : on le remplace par le."
+      }
+    ]
+  },
+  {
+    "id": "futur",
+    "title": "Le Futur Simple - Conjugaison",
+    "shortTitle": "Futur",
+    "color": "#f2b84b",
+    "questions": [
+      {
+        "id": "futur-terminaisons",
+        "type": "choice",
+        "prompt": "Quelles sont les terminaisons du futur simple ?",
+        "instruction": "Choisis la série complète dans l'ordre.",
+        "options": [
+          { "value": "present", "label": "-e, -es, -e, -ons, -ez, -ent" },
+          { "value": "futur", "label": "-ai, -as, -a, -ons, -ez, -ont" },
+          { "value": "imparfait", "label": "-ais, -ais, -ait, -ions, -iez, -aient" },
+          { "value": "passe", "label": "-ai, -as, -a, -âmes, -âtes, -èrent" }
+        ],
+        "answer": "futur",
+        "correctLabel": "-ai, -as, -a, -ons, -ez, -ont",
+        "explanation": "Ces terminaisons servent pour les verbes réguliers et beaucoup d'irréguliers au futur."
+      },
+      {
+        "id": "futur-etre",
+        "type": "fill",
+        "prompt": "Demain, je (être) ___ en forme.",
+        "instruction": "Conjugue être au futur simple.",
+        "accepted": ["serai"],
+        "correctLabel": "serai",
+        "explanation": "Être a le radical ser- au futur : je serai."
+      },
+      {
+        "id": "futur-avoir",
+        "type": "fill",
+        "prompt": "Nous (avoir) ___ le temps de relire.",
+        "instruction": "Conjugue avoir au futur simple.",
+        "accepted": ["aurons"],
+        "correctLabel": "aurons",
+        "explanation": "Avoir a le radical aur- au futur : nous aurons."
+      },
+      {
+        "id": "futur-reguliers",
+        "type": "fill",
+        "prompt": "Complète : Nous (trouver) ___, tu (grandir) ___, elles (vendre) ___.",
+        "instruction": "Écris les trois formes séparées par des virgules.",
+        "accepted": [
+          "trouverons, grandiras, vendront",
+          "trouverons grandiras vendront",
+          "trouverons / grandiras / vendront"
+        ],
+        "correctLabel": "trouverons, grandiras, vendront",
+        "explanation": "Au futur : nous trouverons, tu grandiras, elles vendront."
+      },
+      {
+        "id": "futur-radicaux",
+        "type": "choice",
+        "prompt": "Quelle liste donne les bons radicaux irréguliers ?",
+        "instruction": "Verbes : vouloir, pouvoir, voir, faire, venir.",
+        "options": [
+          { "value": "bons", "label": "voudr-, pourr-, verr-, fer-, viendr-" },
+          { "value": "present", "label": "voul-, pouv-, voy-, fais-, ven-" },
+          { "value": "infinitif", "label": "vouloir-, pouvoir-, voir-, faire-, venir-" },
+          { "value": "imparfait", "label": "voulai-, pouvai-, voyai-, faisai-, venai-" }
+        ],
+        "answer": "bons",
+        "correctLabel": "voudr-, pourr-, verr-, fer-, viendr-",
+        "explanation": "On ajoute ensuite les terminaisons du futur : je voudrai, tu pourras, il verra."
+      },
+      {
+        "id": "futur-yer",
+        "type": "fill",
+        "prompt": "Tu (nettoyer) ___ ta chambre avant samedi.",
+        "instruction": "Conjugue nettoyer au futur simple.",
+        "accepted": ["nettoieras"],
+        "correctLabel": "nettoieras",
+        "explanation": "Les verbes en -yer changent y en i au futur : tu nettoieras."
+      }
+    ]
+  }
+]
+  </script>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const examData = JSON.parse(document.getElementById("exam-data").textContent);
+      const STORAGE_KEY = "timothy-french-exam-v1";
+
+      const state = {
+        sectionIndex: 0,
+        questionIndex: 0,
+        showResults: false,
+        answers: {}
+      };
+
+      const sectionNav = document.getElementById("section-nav");
+      const mainPanel = document.getElementById("main-panel");
+      const currentSectionLabel = document.getElementById("current-section-label");
+      const progressCount = document.getElementById("progress-count");
+      const progressPercent = document.getElementById("progress-percent");
+      const overallProgress = document.getElementById("overall-progress");
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function normalizeAnswer(value) {
+        return String(value || "")
+          .trim()
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[’']/g, " ")
+          .replace(/[^a-z0-9]+/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function getAllQuestions() {
+        return examData.flatMap((section) => section.questions);
+      }
+
+      function getCurrentSection() {
+        return examData[state.sectionIndex];
+      }
+
+      function getCurrentQuestion() {
+        return getCurrentSection().questions[state.questionIndex];
+      }
+
+      function getRecord(question) {
+        return state.answers[question.id] || null;
+      }
+
+      function isAnswered(question) {
+        const record = getRecord(question);
+        return Boolean(record && record.checked);
+      }
+
+      function evaluate(question, value) {
+        let correct = false;
+
+        if (question.type === "choice") {
+          correct = value === question.answer;
+        }
+
+        if (question.type === "truefalse") {
+          correct = value === question.answer;
+        }
+
+        if (question.type === "fill") {
+          const normalized = normalizeAnswer(value);
+          correct = question.accepted.some((accepted) => normalizeAnswer(accepted) === normalized);
+        }
+
+        if (question.type === "selectWords") {
+          const expected = [...question.answer].sort((a, b) => a - b);
+          const selected = Array.isArray(value) ? [...value].map(Number).sort((a, b) => a - b) : [];
+          correct = expected.length === selected.length && expected.every((item, index) => item === selected[index]);
+        }
+
+        return {
+          correct,
+          correctLabel: question.correctLabel,
+          explanation: question.explanation
+        };
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            sectionIndex: state.sectionIndex,
+            questionIndex: state.questionIndex,
+            answers: state.answers
+          }));
+        } catch (error) {
+          // Local storage may be unavailable from some filesystem contexts.
+        }
+      }
+
+      function loadState() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+          if (!saved || typeof saved !== "object") return;
+          if (Number.isInteger(saved.sectionIndex) && examData[saved.sectionIndex]) {
+            state.sectionIndex = saved.sectionIndex;
+          }
+          if (Number.isInteger(saved.questionIndex) && examData[state.sectionIndex].questions[saved.questionIndex]) {
+            state.questionIndex = saved.questionIndex;
+          }
+          if (saved.answers && typeof saved.answers === "object") {
+            state.answers = saved.answers;
+          }
+        } catch (error) {
+          state.answers = {};
+        }
+      }
+
+      function setAnswer(question, value) {
+        const result = evaluate(question, value);
+        state.answers[question.id] = {
+          value,
+          checked: true,
+          correct: result.correct
+        };
+        saveState();
+        render();
+      }
+
+      function setDraftSelection(question, value) {
+        state.answers[question.id] = {
+          value,
+          checked: false,
+          correct: false
+        };
+        saveState();
+        render();
+      }
+
+      function getSectionStats(section) {
+        const attempted = section.questions.filter((question) => isAnswered(question)).length;
+        const correct = section.questions.filter((question) => {
+          const record = getRecord(question);
+          return record && record.checked && record.correct;
+        }).length;
+
+        return {
+          attempted,
+          correct,
+          total: section.questions.length,
+          complete: attempted === section.questions.length,
+          percent: Math.round((correct / section.questions.length) * 100)
+        };
+      }
+
+      function getOverallStats() {
+        const questions = getAllQuestions();
+        const attempted = questions.filter((question) => isAnswered(question)).length;
+        const correct = questions.filter((question) => {
+          const record = getRecord(question);
+          return record && record.checked && record.correct;
+        }).length;
+
+        return {
+          attempted,
+          correct,
+          total: questions.length,
+          percent: questions.length ? Math.round((correct / questions.length) * 100) : 0,
+          completionPercent: questions.length ? Math.round((attempted / questions.length) * 100) : 0
+        };
+      }
+
+      function getFormatLabel(type) {
+        const labels = {
+          choice: "Choix multiple",
+          fill: "À compléter",
+          selectWords: "Mots à choisir",
+          truefalse: "Vrai / Faux"
+        };
+        return labels[type] || "Question";
+      }
+
+      function renderProgress() {
+        const stats = getOverallStats();
+        progressCount.textContent = `${stats.attempted}/${stats.total} questions`;
+        progressPercent.textContent = `${stats.completionPercent}%`;
+        overallProgress.style.width = `${stats.completionPercent}%`;
+
+        if (state.showResults) {
+          currentSectionLabel.textContent = "Résultats";
+        } else {
+          const section = getCurrentSection();
+          currentSectionLabel.textContent = `${section.title} - Question ${state.questionIndex + 1}/${section.questions.length}`;
+        }
+      }
+
+      function renderSectionNav() {
+        sectionNav.innerHTML = examData.map((section, index) => {
+          const stats = getSectionStats(section);
+          const selected = !state.showResults && index === state.sectionIndex;
+          const completedClass = stats.complete ? "completed" : "";
+          return `
+            <button
+              class="section-tab ${completedClass}"
+              type="button"
+              role="tab"
+              aria-selected="${selected}"
+              style="--section-color: ${section.color};"
+              data-action="go-section"
+              data-section-index="${index}"
+            >
+              <span class="section-stripe" aria-hidden="true"></span>
+              <span>
+                <span class="tab-title">${escapeHtml(section.shortTitle)}</span>
+                <span class="tab-meta">${stats.attempted}/${stats.total} répondues</span>
+              </span>
+              <span class="tab-score">${stats.correct}/${stats.total}</span>
+            </button>
+          `;
+        }).join("");
+      }
+
+      function renderChoice(question, record) {
+        const selectedValue = record ? record.value : null;
+        const checked = Boolean(record && record.checked);
+
+        return `
+          <div class="option-grid">
+            ${question.options.map((option) => {
+              const selected = selectedValue === option.value;
+              const isCorrectOption = checked && option.value === question.answer;
+              const isWrongOption = checked && selected && option.value !== question.answer;
+              return `
+                <button
+                  class="option-button ${selected ? "selected" : ""} ${isCorrectOption ? "correct-option" : ""} ${isWrongOption ? "wrong-option" : ""}"
+                  type="button"
+                  data-action="answer-choice"
+                  data-value="${escapeHtml(option.value)}"
+                >
+                  ${escapeHtml(option.label)}
+                </button>
+              `;
+            }).join("")}
+          </div>
+        `;
+      }
+
+      function renderTrueFalse(question, record) {
+        const selectedValue = record ? record.value : null;
+        const checked = Boolean(record && record.checked);
+        const options = [
+          { value: true, label: "Vrai" },
+          { value: false, label: "Faux" }
+        ];
+
+        return `
+          <div class="option-grid">
+            ${options.map((option) => {
+              const selected = selectedValue === option.value;
+              const isCorrectOption = checked && option.value === question.answer;
+              const isWrongOption = checked && selected && option.value !== question.answer;
+              return `
+                <button
+                  class="option-button ${selected ? "selected" : ""} ${isCorrectOption ? "correct-option" : ""} ${isWrongOption ? "wrong-option" : ""}"
+                  type="button"
+                  data-action="answer-truefalse"
+                  data-value="${option.value}"
+                >
+                  ${option.label}
+                </button>
+              `;
+            }).join("")}
+          </div>
+        `;
+      }
+
+      function renderFill(question, record) {
+        const value = record ? record.value : "";
+        return `
+          <div class="input-row">
+            <input
+              class="text-input"
+              id="fill-answer"
+              type="text"
+              value="${escapeHtml(value)}"
+              autocomplete="off"
+              autocapitalize="none"
+              spellcheck="false"
+              aria-label="Réponse à écrire"
+            >
+            <button class="primary-button" type="button" data-action="check-fill">Vérifier</button>
+          </div>
+        `;
+      }
+
+      function renderSelectWords(question, record) {
+        const selected = Array.isArray(record && record.value) ? record.value.map(Number) : [];
+        const checked = Boolean(record && record.checked);
+        return `
+          <div class="token-wrap" aria-label="Mots de la phrase">
+            ${question.tokens.map((token, index) => {
+              const isSelected = selected.includes(index);
+              const isExpected = question.answer.includes(index);
+              const isCorrectToken = checked && isExpected;
+              const isWrongToken = checked && isSelected && !isExpected;
+              return `
+                <button
+                  class="token-button ${isSelected ? "selected" : ""} ${isCorrectToken ? "correct-token" : ""} ${isWrongToken ? "wrong-token" : ""}"
+                  type="button"
+                  data-action="toggle-token"
+                  data-index="${index}"
+                >
+                  ${escapeHtml(token)}
+                </button>
+              `;
+            }).join("")}
+          </div>
+          <div class="answer-area">
+            <button class="primary-button" type="button" data-action="check-select">Vérifier</button>
+          </div>
+        `;
+      }
+
+      function renderAnswerArea(question, record) {
+        if (question.type === "choice") return renderChoice(question, record);
+        if (question.type === "truefalse") return renderTrueFalse(question, record);
+        if (question.type === "fill") return renderFill(question, record);
+        if (question.type === "selectWords") return renderSelectWords(question, record);
+        return "";
+      }
+
+      function renderFeedback(question, record) {
+        if (!record || !record.checked) {
+          return "";
+        }
+
+        const result = evaluate(question, record.value);
+        const feedbackClass = result.correct ? "correct" : "wrong";
+        const mark = result.correct ? "✓" : "✗";
+        const title = result.correct ? "Bravo, c'est correct !" : "Pas encore.";
+        const answerLine = result.correct ? "" : `<span class="feedback-detail">Bonne réponse : ${escapeHtml(result.correctLabel)}.</span>`;
+
+        return `
+          <div class="feedback ${feedbackClass}" role="status">
+            <span class="feedback-mark">${mark}</span>
+            <span>
+              <strong class="feedback-title">${title}</strong>
+              ${answerLine}
+              <span class="feedback-detail">${answerLine ? "<br>" : ""}${escapeHtml(result.explanation)}</span>
+            </span>
+          </div>
+        `;
+      }
+
+      function renderPractice() {
+        const section = getCurrentSection();
+        const question = getCurrentQuestion();
+        const record = getRecord(question);
+        const stats = getSectionStats(section);
+        const atStart = state.sectionIndex === 0 && state.questionIndex === 0;
+        const atEnd = state.sectionIndex === examData.length - 1 && state.questionIndex === section.questions.length - 1;
+
+        mainPanel.innerHTML = `
+          <article class="practice-panel" style="--section-color: ${section.color};">
+            <header class="section-header">
+              <div>
+                <div class="section-kicker">Section ${state.sectionIndex + 1}/5</div>
+                <h2>${escapeHtml(section.title)}</h2>
+              </div>
+              <span class="section-pill">${stats.correct}/${stats.total} bonnes réponses</span>
+            </header>
+
+            <div class="question-card">
+              <div class="question-top">
+                <span class="format-tag">${getFormatLabel(question.type)}</span>
+                <span>Question ${state.questionIndex + 1}/${section.questions.length}</span>
+              </div>
+              <h3 class="question-title">${escapeHtml(question.prompt)}</h3>
+              <p class="instruction">${escapeHtml(question.instruction)}</p>
+              <div class="answer-area">
+                ${renderAnswerArea(question, record)}
+              </div>
+              ${renderFeedback(question, record)}
+            </div>
+
+            <footer class="panel-controls">
+              <div class="control-cluster">
+                <button class="ghost-button" type="button" data-action="previous" ${atStart ? "disabled" : ""}>Précédent</button>
+                <button class="secondary-button" type="button" data-action="next">${atEnd ? "Voir résultats" : "Suivant"}</button>
+              </div>
+              <span class="mini-stats">Section : ${stats.attempted}/${stats.total} répondues</span>
+            </footer>
+          </article>
+        `;
+      }
+
+      function getEncouragingMessage(stats) {
+        if (stats.percent >= 80 && stats.attempted === stats.total) {
+          return "Tu as réussi !";
+        }
+        if (stats.percent >= 60) {
+          return "Bon travail, continue à consolider.";
+        }
+        return "Continue à t'entraîner !";
+      }
+
+      function renderResults() {
+        const overall = getOverallStats();
+        const message = getEncouragingMessage(overall);
+
+        mainPanel.innerHTML = `
+          <section class="results-panel">
+            <div class="results-hero">
+              <div>
+                <h2>${escapeHtml(message)}</h2>
+                <p>Score général : ${overall.correct}/${overall.total}. Questions répondues : ${overall.attempted}/${overall.total}.</p>
+              </div>
+              <div class="score-bubble" aria-label="Score général ${overall.percent}%">
+                <span><strong>${overall.percent}%</strong>score</span>
+              </div>
+            </div>
+
+            <div class="results-grid">
+              ${examData.map((section, index) => {
+                const stats = getSectionStats(section);
+                return `
+                  <article class="result-card" style="--section-color: ${section.color};">
+                    <div class="result-top">
+                      <h3 class="result-title">${escapeHtml(section.title)}</h3>
+                      <span class="result-score">${stats.correct}/${stats.total}</span>
+                    </div>
+                    <div class="tiny-bar" aria-hidden="true">
+                      <div class="tiny-fill" style="width: ${stats.percent}%;"></div>
+                    </div>
+                    <p class="tab-meta">${stats.percent}% - ${stats.attempted}/${stats.total} répondues</p>
+                    <div class="result-actions">
+                      <button class="review-button" type="button" data-action="review-section" data-section-index="${index}">Réviser</button>
+                    </div>
+                  </article>
+                `;
+              }).join("")}
+            </div>
+          </section>
+        `;
+      }
+
+      function render() {
+        renderProgress();
+        renderSectionNav();
+        if (state.showResults) {
+          renderResults();
+        } else {
+          renderPractice();
+        }
+      }
+
+      function goToQuestion(sectionIndex, questionIndex) {
+        const section = examData[sectionIndex];
+        if (!section || !section.questions[questionIndex]) return;
+        state.sectionIndex = sectionIndex;
+        state.questionIndex = questionIndex;
+        state.showResults = false;
+        saveState();
+        render();
+      }
+
+      function goNext() {
+        const section = getCurrentSection();
+        if (state.questionIndex < section.questions.length - 1) {
+          goToQuestion(state.sectionIndex, state.questionIndex + 1);
+          return;
+        }
+        if (state.sectionIndex < examData.length - 1) {
+          goToQuestion(state.sectionIndex + 1, 0);
+          return;
+        }
+        state.showResults = true;
+        render();
+      }
+
+      function goPrevious() {
+        if (state.questionIndex > 0) {
+          goToQuestion(state.sectionIndex, state.questionIndex - 1);
+          return;
+        }
+        if (state.sectionIndex > 0) {
+          const previousSection = examData[state.sectionIndex - 1];
+          goToQuestion(state.sectionIndex - 1, previousSection.questions.length - 1);
+        }
+      }
+
+      function handleClick(event) {
+        const target = event.target.closest("[data-action]");
+        if (!target) return;
+
+        const action = target.dataset.action;
+        const question = state.showResults ? null : getCurrentQuestion();
+
+        if (action === "go-section") {
+          goToQuestion(Number(target.dataset.sectionIndex), 0);
+        }
+
+        if (action === "review-section") {
+          goToQuestion(Number(target.dataset.sectionIndex), 0);
+        }
+
+        if (action === "show-results") {
+          state.showResults = true;
+          render();
+        }
+
+        if (action === "reset") {
+          const confirmed = window.confirm("Effacer toutes les réponses et recommencer ?");
+          if (!confirmed) return;
+          state.sectionIndex = 0;
+          state.questionIndex = 0;
+          state.showResults = false;
+          state.answers = {};
+          try {
+            localStorage.removeItem(STORAGE_KEY);
+          } catch (error) {
+            // Nothing to clear when storage is unavailable.
+          }
+          render();
+        }
+
+        if (action === "previous") {
+          goPrevious();
+        }
+
+        if (action === "next") {
+          goNext();
+        }
+
+        if (action === "answer-choice" && question) {
+          setAnswer(question, target.dataset.value);
+        }
+
+        if (action === "answer-truefalse" && question) {
+          setAnswer(question, target.dataset.value === "true");
+        }
+
+        if (action === "toggle-token" && question) {
+          const record = getRecord(question);
+          const selected = Array.isArray(record && record.value) ? record.value.map(Number) : [];
+          const index = Number(target.dataset.index);
+          const nextSelected = selected.includes(index)
+            ? selected.filter((item) => item !== index)
+            : [...selected, index];
+          setDraftSelection(question, nextSelected);
+        }
+
+        if (action === "check-select" && question) {
+          const record = getRecord(question);
+          const selected = Array.isArray(record && record.value) ? record.value.map(Number) : [];
+          setAnswer(question, selected);
+        }
+
+        if (action === "check-fill" && question) {
+          const input = document.getElementById("fill-answer");
+          setAnswer(question, input ? input.value : "");
+        }
+      }
+
+      function handleKeydown(event) {
+        if (event.key === "Enter" && event.target && event.target.id === "fill-answer") {
+          event.preventDefault();
+          const question = getCurrentQuestion();
+          setAnswer(question, event.target.value);
+        }
+      }
+
+      document.addEventListener("click", handleClick);
+      document.addEventListener("keydown", handleKeydown);
+
+      loadState();
+      render();
+    })();
+  </script>
+</body>
+</html>
