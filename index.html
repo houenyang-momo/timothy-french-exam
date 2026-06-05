@@ -26,102 +26,190 @@
     }
 
     [data-theme="dark"] {
-      --bg: #1a1512;
-      --bg-soft: #221d19;
-      --ink: #ece4da;
-      --muted: #9a8a7a;
-      --orange: #e88a40;
-      --orange-dark: #d47a30;
-      --yellow: #cfa040;
-      --blue: #5a9fd6;
-      --blue-dark: #7ab8e8;
-      --green: #5cb879;
-      --red: #e07060;
-      --card: #2a2420;
-      --border: #3d3530;
-      --shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
-      --focus: 0 0 0 4px rgba(90, 159, 214, 0.35);
+      --bg: #161311;
+      --bg-soft: #1d1916;
+      --ink: #f5ebe0;
+      --muted: #b5a89b;
+      --orange: #ff9f43;
+      --orange-dark: #cc7a2a;
+      --yellow: #ffd369;
+      --blue: #85c1e9;
+      --blue-dark: #5a9fd6;
+      --green: #81c784;
+      --red: #e57373;
+      --card: #241f1c;
+      --border: #332b26;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --focus: 0 0 0 4px rgba(255, 159, 67, 0.35);
     }
-    [data-theme="dark"] body {
+
+    [data-theme="dark"], [data-theme="dark"] body {
       background:
-        radial-gradient(circle at 10% 12%, rgba(180, 140, 60, 0.15), transparent 28rem),
-        radial-gradient(circle at 90% 8%, rgba(60, 100, 150, 0.12), transparent 24rem),
-        linear-gradient(135deg, #1a1512 0%, #1d1a18 100%);
+        radial-gradient(circle at 10% 12%, rgba(255, 159, 67, 0.08), transparent 28rem),
+        radial-gradient(circle at 90% 8%, rgba(133, 193, 233, 0.06), transparent 24rem),
+        linear-gradient(135deg, #161311 0%, #1a1613 100%);
+      color: var(--ink);
     }
+
+    /* Card / surface */
     [data-theme="dark"] .top-card {
-      background: linear-gradient(135deg, rgba(42, 36, 32, 0.96), rgba(34, 29, 25, 0.94));
-      border-color: rgba(61, 53, 48, 0.78);
+      background: linear-gradient(135deg, rgba(36, 31, 28, 0.96), rgba(29, 25, 22, 0.94));
+      border-color: rgba(51, 43, 38, 0.78);
     }
     [data-theme="dark"] .top-card::before {
-      background: rgba(232, 138, 64, 0.07);
+      background: rgba(255, 159, 67, 0.06);
     }
     [data-theme="dark"] .sun {
-      opacity: 0.65;
-      filter: saturate(0.5) brightness(0.7);
+      opacity: 0.55;
+      filter: saturate(0.4) brightness(0.65);
     }
+
+    /* Sidebar / section-nav */
+    [data-theme="dark"] .section-nav {
+      background: #1a1613;
+      border-color: var(--border);
+    }
+    [data-theme="dark"] .section-tab {
+      color: var(--muted);
+      background: transparent;
+      border-left: 4px solid transparent;
+    }
+    [data-theme="dark"] .section-tab:hover {
+      color: var(--ink);
+      background: rgba(255, 159, 67, 0.05);
+    }
+    [data-theme="dark"] .section-tab.active {
+      color: var(--orange);
+      background: rgba(255, 159, 67, 0.08);
+      border-left-color: var(--orange);
+    }
+    [data-theme="dark"] .section-tab.completed {
+      border-left-color: var(--green);
+    }
+    [data-theme="dark"] .section-tab.completed .tab-score {
+      color: var(--green);
+    }
+
+    /* Section header banner */
+    [data-theme="dark"] .section-header {
+      background: linear-gradient(135deg, rgba(255, 159, 67, 0.12), rgba(255, 159, 67, 0.04));
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="dark"] .section-header h2 {
+      color: var(--orange);
+    }
+
+    /* Question card */
+    [data-theme="dark"] .question-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Buttons */
+    [data-theme="dark"] .option-button,
+    [data-theme="dark"] .token-button {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--ink);
+    }
+    [data-theme="dark"] .option-button:hover,
+    [data-theme="dark"] .token-button:hover {
+      border-color: var(--orange);
+      background: rgba(255, 159, 67, 0.05);
+    }
+    [data-theme="dark"] .option-button.selected,
+    [data-theme="dark"] .token-button.selected {
+      border-color: var(--orange);
+      background: rgba(255, 159, 67, 0.12);
+      color: var(--orange);
+      box-shadow: 0 0 0 2px rgba(255, 159, 67, 0.25);
+    }
+    [data-theme="dark"] .option-button.correct-option,
+    [data-theme="dark"] .token-button.correct-token {
+      border-color: var(--green);
+      background: rgba(129, 199, 132, 0.12);
+      color: var(--green);
+    }
+    [data-theme="dark"] .option-button.wrong-option,
+    [data-theme="dark"] .token-button.wrong-token {
+      border-color: var(--red);
+      background: rgba(229, 115, 115, 0.12);
+      color: var(--red);
+    }
+
+    /* Secondary / ghost buttons */
     [data-theme="dark"] .secondary-button {
-      background: #2d2a27;
+      background: #2a2521;
       color: var(--blue);
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
     }
     [data-theme="dark"] .ghost-button {
-      background: rgba(42, 36, 32, 0.78);
+      background: rgba(36, 31, 28, 0.78);
       border-color: var(--border);
       color: var(--muted);
     }
-    [data-theme="dark"] .option-button {
-      background: var(--card);
-      border-color: var(--border);
-    }
-    [data-theme="dark"] .option-button:hover {
-      background: #35302c;
-    }
-    [data-theme="dark"] .token-button {
-      background: var(--card);
-      border-color: var(--border);
-    }
-    [data-theme="dark"] .question-card {
-      background: var(--card);
-    }
+
+    /* Feedback */
     [data-theme="dark"] .correct {
-      background: #1e3a2a;
-      color: #8cd4a0;
+      background: rgba(129, 199, 132, 0.1);
+      border: 1px solid rgba(129, 199, 132, 0.25);
+      color: var(--green);
     }
     [data-theme="dark"] .incorrect {
-      background: #3a1e1e;
-      color: #f0a090;
+      background: rgba(229, 115, 115, 0.1);
+      border: 1px solid rgba(229, 115, 115, 0.25);
+      color: var(--red);
     }
     [data-theme="dark"] .explanation {
-      background: rgba(90, 159, 214, 0.1);
-      border-left-color: var(--blue);
+      background: rgba(133, 193, 233, 0.07);
+      border-left: 4px solid var(--blue);
+      color: var(--ink);
     }
-    [data-theme="dark"] .section-tab {
-      background: var(--card);
-      border-color: var(--border);
+
+    /* Progress */
+    [data-theme="dark"] .progress-track {
+      background: var(--border);
     }
-    [data-theme="dark"] .section-tab:hover {
-      background: #35302c;
+    [data-theme="dark"] .progress-fill {
+      background: linear-gradient(90deg, var(--orange-dark), var(--orange));
     }
-    [data-theme="dark"] .section-tab.completed {
-      border-color: var(--green);
-    }
-    [data-theme="dark"] .section-tab.active {
-      border-color: var(--blue);
-    }
+
+    /* Results */
     [data-theme="dark"] .result-card {
       background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
     }
     [data-theme="dark"] .badge-green {
-      background: #1e3a2a;
-      color: #8cd4a0;
+      background: rgba(129, 199, 132, 0.12);
+      color: var(--green);
+      border: 1px solid rgba(129, 199, 132, 0.2);
     }
     [data-theme="dark"] .badge-yellow {
-      background: #3a3520;
-      color: #e0c860;
+      background: rgba(255, 211, 105, 0.12);
+      color: var(--yellow);
+      border: 1px solid rgba(255, 211, 105, 0.2);
     }
     [data-theme="dark"] .badge-red {
-      background: #3a1e1e;
-      color: #f0a090;
+      background: rgba(229, 115, 115, 0.12);
+      color: var(--red);
+      border: 1px solid rgba(229, 115, 115, 0.2);
+    }
+
+    /* Theme toggle in dark */
+    [data-theme="dark"] .theme-toggle {
+      background: var(--bg-soft);
+      border-color: var(--border);
+      color: var(--yellow);
+    }
+
+    /* Utility */
+    [data-theme="dark"] .question-meta {
+      color: var(--muted);
+    }
+    [data-theme="dark"] .instruction-text {
+      color: var(--muted);
     }
 
     * {
@@ -1023,6 +1111,40 @@
         "answer": true,
         "correctLabel": "Vrai",
         "explanation": "Dans « nous sommes prêts », prêts précise le pronom nous."
+      },
+      {
+        "id": "adj-extra-accord2",
+        "type": "fill",
+        "prompt": "Accorde l'adjectif : Cette histoire est très (amusant) ___.'",
+        "instruction": "Écris l'adjectif bien accordé.",
+        "accepted": ["amusante"],
+        "correctLabel": "amusante",
+        "explanation": "Histoire est féminin singulier, donc amusant devient amusante."
+      },
+      {
+        "id": "adj-extra-reperage2",
+        "type": "selectWords",
+        "prompt": "Tape sur les adjectifs dans la phrase.",
+        "instruction": "Phrase : Mon vieux chat gris dort sur le canapé moelleux.",
+        "tokens": ["Mon", "vieux", "chat", "gris", "dort", "sur", "le", "canapé", "moelleux."],
+        "answer": [1, 3, 8],
+        "correctLabel": "vieux, gris, moelleux",
+        "explanation": "Vieux, gris et moelleux sont tous des adjectifs qui précisent des noms."
+      },
+      {
+        "id": "adj-extra-avant-apres",
+        "type": "choice",
+        "prompt": "\"Un grand homme\" et \"un homme grand\" ont-ils le même sens ?",
+        "instruction": "La place de l'adjectif peut changer le sens.",
+        "options": [
+          { "value": "non", "label": "Non : un grand homme est important, un homme grand est de grande taille." },
+          { "value": "oui", "label": "Oui, les deux expressions parlent de la taille." },
+          { "value": "impossible", "label": "C'est impossible, l'adjectif ne se place qu'après le nom." },
+          { "value": "pareil", "label": "Oui, c'est la même chose." }
+        ],
+        "answer": "non",
+        "correctLabel": "Non : un grand homme est important, un homme grand est de grande taille.",
+        "explanation": "Certains adjectifs changent de sens selon leur place, comme grand ou pauvre."
       }
     ]
   },
@@ -1104,6 +1226,40 @@
         "answer": true,
         "correctLabel": "Vrai",
         "explanation": "Exemple : « Demain, je révise » devient « Je révise demain »."
+      },
+      {
+        "id": "cc-extra-type-maniere",
+        "type": "choice",
+        "prompt": "Dans « Il travaille avec patience », quel est le type du CC ?",
+        "instruction": "Observe : avec patience.",
+        "options": [
+          { "value": "lieu", "label": "CC de lieu" },
+          { "value": "temps", "label": "CC de temps" },
+          { "value": "maniere", "label": "CC de manière" },
+          { "value": "cause", "label": "CC de cause" }
+        ],
+        "answer": "maniere",
+        "correctLabel": "CC de manière",
+        "explanation": "Avec patience répond à la question « comment ? » : c'est un CC de manière."
+      },
+      {
+        "id": "cc-extra-ajout-lieu",
+        "type": "fill",
+        "prompt": "Ajoute un CC de lieu : Je range mes livres ___.'",
+        "instruction": "Écris un groupe qui indique le lieu.",
+        "accepted": ["sur l'étagère", "dans la bibliothèque", "sur le bureau", "dans ma chambre", "dans l'armoire", "sur la table"],
+        "correctLabel": "sur l'étagère",
+        "explanation": "Un CC de lieu répond à la question « où ? »."
+      },
+      {
+        "id": "cc-extra-cause",
+        "type": "selectWords",
+        "prompt": "Tape sur le complément circonstanciel de cause.",
+        "instruction": "Phrase : Il est en retard à cause du trafic.",
+        "tokens": ["Il", "est", "en", "retard", "à cause du", "trafic."],
+        "answer": [4, 5],
+        "correctLabel": "à cause du trafic",
+        "explanation": "À cause du trafic répond à la question « pourquoi ? »."
       }
     ]
   },
@@ -1190,7 +1346,41 @@
         "instruction": "Vrai ou faux ?",
         "answer": true,
         "correctLabel": "Vrai",
-        "explanation": "« Un gâteau au chocolat » peut devenir « un gâteau » ; la phrase reste correcte."
+        "explanation": "\u00ab Un g\u00e2teau au chocolat \u00bb peut devenir \u00ab un g\u00e2teau \u00bb ; la phrase reste correcte."
+      },
+      {
+        "id": "cdn-extra-composition2",
+        "type": "choice",
+        "prompt": "De quoi est composé le CdN dans « une lettre de vous » ?",
+        "instruction": "Observe la structure.",
+        "options": [
+          { "value": "prep-nom", "label": "Préposition + nom" },
+          { "value": "prep-pronom", "label": "Préposition + pronom" },
+          { "value": "prep-infinitif", "label": "Préposition + verbe à l'infinitif" },
+          { "value": "prep-adverbe", "label": "Préposition + adverbe" }
+        ],
+        "answer": "prep-pronom",
+        "correctLabel": "Préposition + pronom",
+        "explanation": "De est la préposition et vous est un pronom."
+      },
+      {
+        "id": "cdn-extra-exemple",
+        "type": "selectWords",
+        "prompt": "Tape sur le complément du nom dans la phrase.",
+        "instruction": "Phrase : J'ai une envie de voyager.",
+        "tokens": ["J'ai", "une", "envie", "de", "voyager."],
+        "answer": [3, 4],
+        "correctLabel": "de voyager",
+        "explanation": "De voyager précise le nom envie ; c'est préposition + verbe à l'infinitif."
+      },
+      {
+        "id": "cdn-extra-sans",
+        "type": "fill",
+        "prompt": "Ajoute un complément du nom : un verre ___.'",
+        "instruction": "Écris un groupe introduit par une préposition.",
+        "accepted": ["d'eau", "de jus", "de lait", "à vin", "en plastique", "à pied"],
+        "correctLabel": "d'eau",
+        "explanation": "Un CdN donne une précision sur le nom et commence par une préposition."
       }
     ]
   },
@@ -1278,6 +1468,40 @@
         "accepted": ["le"],
         "correctLabel": "le",
         "explanation": "Le film est masculin singulier : on le remplace par le."
+      },
+      {
+        "id": "cod-extra-double",
+        "type": "choice",
+        "prompt": "Dans « J'écris une lettre à ma grand-mère », combien y a-t-il de compléments du verbe ?",
+        "instruction": "Cherche ce qui complète le verbe écris.",
+        "options": [
+          { "value": "un", "label": "Un seul complément" },
+          { "value": "deux", "label": "Deux compléments : un COD et un COI" },
+          { "value": "zero", "label": "Aucun, le verbe est complet" },
+          { "value": "trois", "label": "Trois compléments" }
+        ],
+        "answer": "deux",
+        "correctLabel": "Deux compléments : un COD et un COI",
+        "explanation": "Une lettre est COD (quoi ?) ; à ma grand-mère est COI (à qui ?)."
+      },
+      {
+        "id": "cod-extra-coi-question",
+        "type": "fill",
+        "prompt": "Pose la question pour trouver le COI dans « Il parle de son voyage ».''",
+        "instruction": "Écris la question avec « de quoi ».",
+        "accepted": ["de quoi", "de quoi parle-t-il", "il parle de quoi"],
+        "correctLabel": "De quoi ?",
+        "explanation": "Le COI répond à « de quoi ? », « à qui ? », « de qui ? »."
+      },
+      {
+        "id": "cod-extra-selection",
+        "type": "selectWords",
+        "prompt": "Tape sur le COI dans la phrase.",
+        "instruction": "Phrase : Lucie téléphone à sa meilleure amie.",
+        "tokens": ["Lucie", "téléphone", "à", "sa", "meilleure", "amie."],
+        "answer": [2, 3, 4, 5],
+        "correctLabel": "à sa meilleure amie",
+        "explanation": "« À sa meilleure amie » répond à « à qui ? » avec une préposition."
       }
     ]
   },
@@ -1356,6 +1580,39 @@
         "accepted": ["nettoieras"],
         "correctLabel": "nettoieras",
         "explanation": "Les verbes en -yer changent y en i au futur : tu nettoieras."
+      },
+      {
+        "id": "futur-extra-pouvoir",
+        "type": "fill",
+        "prompt": "Conjugue : Je (pouvoir) ___ venir à la fête.",
+        "instruction": "Futur simple du verbe pouvoir.",
+        "accepted": ["pourrai"],
+        "correctLabel": "pourrai",
+        "explanation": "Pouvoir a le radical pourr- au futur : je pourrai."
+      },
+      {
+        "id": "futur-extra-faire",
+        "type": "choice",
+        "prompt": "Quel est le radical de « faire » au futur simple ?",
+        "instruction": "Souviens-toi des verbes irréguliers.",
+        "options": [
+          { "value": "fer-", "label": "fer-" },
+          { "value": "fais-", "label": "fais-" },
+          { "value": "fai-", "label": "fai-" },
+          { "value": "faire-", "label": "faire-" }
+        ],
+        "answer": "fer-",
+        "correctLabel": "fer-",
+        "explanation": "Au futur : je ferai, tu feras, il fera, etc."
+      },
+      {
+        "id": "futur-extra-voir",
+        "type": "fill",
+        "prompt": "Conjugue : Ils (voir) ___ le match demain.",
+        "instruction": "Futur simple de voir.",
+        "accepted": ["verront"],
+        "correctLabel": "verront",
+        "explanation": "Voir a le radical verr- au futur : ils verront."
       }
     ]
   }
@@ -1367,6 +1624,31 @@
       "use strict";
 
       const examData = JSON.parse(document.getElementById("exam-data").textContent);
+      const QUESTIONS_PER_SECTION = 6;
+
+      // Fisher-Yates shuffle
+      function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      // Randomize: pick 6 questions per section from the pool
+      function pickActiveQuestions() {
+        examData.forEach((section) => {
+          const pool = section.questions.slice();
+          shuffleArray(pool);
+          section.questions = pool.slice(0, QUESTIONS_PER_SECTION);
+        });
+      }
+
+      // Build the full pool reference before truncating
+      const FULL_POOL = examData.map((s) => s.questions.slice());
+
+      // First-time shuffle
+      pickActiveQuestions();
       const STORAGE_KEY = "timothy-french-exam-v1";
       const THEME_KEY = "timothy-french-exam-theme";
 
@@ -1909,6 +2191,14 @@
           state.questionIndex = 0;
           state.showResults = false;
           state.answers = {};
+          // Re-randomize questions from the full pool
+          examData.forEach((section, i) => {
+            if (FULL_POOL[i]) {
+              const pool = FULL_POOL[i].slice();
+              shuffleArray(pool);
+              section.questions = pool.slice(0, QUESTIONS_PER_SECTION);
+            }
+          });
           try {
             localStorage.removeItem(STORAGE_KEY);
           } catch (error) {
