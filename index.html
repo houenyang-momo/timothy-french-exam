@@ -69,9 +69,15 @@
       background: #1a1613;
       border-color: var(--border);
     }
+    [data-theme="dark"] .practice-panel,
+    [data-theme="dark"] .results-panel {
+      background: var(--card);
+      border-color: var(--border);
+    }
     [data-theme="dark"] .section-tab {
       color: var(--muted);
-      background: transparent;
+      background: rgba(36, 31, 28, 0.6);
+      border: 1px solid var(--border);
       border-left: 4px solid transparent;
     }
     [data-theme="dark"] .section-tab:hover {
@@ -80,8 +86,13 @@
     }
     [data-theme="dark"] .section-tab.active {
       color: var(--orange);
-      background: rgba(255, 159, 67, 0.08);
+      background: rgba(255, 159, 67, 0.12);
       border-left-color: var(--orange);
+      border-color: var(--border) var(--border) var(--border) var(--orange);
+    }
+    [data-theme="dark"] .section-tab[aria-selected="true"] {
+      background: rgba(255, 159, 67, 0.10);
+      border-color: var(--orange);
     }
     [data-theme="dark"] .section-tab.completed {
       border-left-color: var(--green);
