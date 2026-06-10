@@ -1126,7 +1126,7 @@
       {
         "id": "adj-extra-accord2",
         "type": "fill",
-        "prompt": "Accorde l'adjectif : Cette histoire est très (amusant) ___.'",
+        "prompt": "Accorde l'adjectif : Cette histoire est très (amusant) ___.",
         "instruction": "Écris l'adjectif bien accordé.",
         "accepted": ["amusante"],
         "correctLabel": "amusante",
@@ -1256,9 +1256,13 @@
       {
         "id": "cc-extra-ajout-lieu",
         "type": "fill",
-        "prompt": "Ajoute un CC de lieu : Je range mes livres ___.'",
+        "prompt": "Ajoute un CC de lieu : Je range mes livres ___.",
         "instruction": "Écris un groupe qui indique le lieu.",
         "accepted": ["sur l'étagère", "dans la bibliothèque", "sur le bureau", "dans ma chambre", "dans l'armoire", "sur la table"],
+        "acceptedPatterns": [
+          "^(dans|sur|sous|chez|devant|derriere|pres de|loin de|a cote de|entre|vers|au|aux|en)\\s+[a-z0-9]+",
+          "^a\\s+(?!cause\\b|partir\\b|condition\\b|force\\b)[a-z0-9]+"
+        ],
         "correctLabel": "sur l'étagère",
         "explanation": "Un CC de lieu répond à la question « où ? »."
       },
@@ -1387,9 +1391,12 @@
       {
         "id": "cdn-extra-sans",
         "type": "fill",
-        "prompt": "Ajoute un complément du nom : un verre ___.'",
+        "prompt": "Ajoute un complément du nom : un verre ___.",
         "instruction": "Écris un groupe introduit par une préposition.",
         "accepted": ["d'eau", "de jus", "de lait", "à vin", "en plastique", "à pied"],
+        "acceptedPatterns": [
+          "^(a|au|aux|de|d|du|des|en|sans|avec|pour|par)\\s+[a-z0-9]+"
+        ],
         "correctLabel": "d'eau",
         "explanation": "Un CdN donne une précision sur le nom et commence par une préposition."
       }
@@ -1498,9 +1505,9 @@
       {
         "id": "cod-extra-coi-question",
         "type": "fill",
-        "prompt": "Pose la question pour trouver le COI dans « Il parle de son voyage ».''",
+        "prompt": "Pose la question pour trouver le COI dans « Il parle de son voyage ».",
         "instruction": "Écris la question avec « de quoi ».",
-        "accepted": ["de quoi", "de quoi parle-t-il", "il parle de quoi"],
+        "accepted": ["de quoi", "de quoi parle-t-il", "il parle de quoi", "de quoi il parle", "de quoi est-ce qu'il parle"],
         "correctLabel": "De quoi ?",
         "explanation": "Le COI répond à « de quoi ? », « à qui ? », « de qui ? »."
       },
@@ -1716,10 +1723,21 @@
           .toLowerCase()
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
-          .replace(/[’']/g, " ")
+          .replace(/[’‘'`]/g, " ")
           .replace(/[^a-z0-9]+/g, " ")
           .replace(/\s+/g, " ")
           .trim();
+      }
+
+      function matchesAcceptedPattern(normalized, patterns) {
+        if (!Array.isArray(patterns)) return false;
+        return patterns.some((pattern) => {
+          try {
+            return new RegExp(pattern, "u").test(normalized);
+          } catch (error) {
+            return false;
+          }
+        });
       }
 
       function getAllQuestions() {
@@ -1756,7 +1774,9 @@
 
         if (question.type === "fill") {
           const normalized = normalizeAnswer(value);
-          correct = question.accepted.some((accepted) => normalizeAnswer(accepted) === normalized);
+          const accepted = Array.isArray(question.accepted) ? question.accepted : [];
+          correct = accepted.some((answer) => normalizeAnswer(answer) === normalized)
+            || matchesAcceptedPattern(normalized, question.acceptedPatterns);
         }
 
         if (question.type === "selectWords") {
